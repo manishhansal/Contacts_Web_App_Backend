@@ -5,6 +5,8 @@ app.use(cors());
 app.use(express.json());
 const contactsController = require("../Controllers/contacts");
 
+app.get("/", contactsController.home);
+
 app.get("/contacts", contactsController.getAllContacts);
 app.post("/contacts", contactsController.createContacts);
 

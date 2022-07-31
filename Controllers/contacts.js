@@ -84,10 +84,15 @@ async function sendMessage(req, res, next) {
   });
 }
 
+async function home(req, res, next) {
+  res.send("Welcome to home route.")
+}
+
 module.exports = {
   getAllContacts,
   createContacts,
   getAllMessages,
   createMessages,
-  sendMessage
+  sendMessage,
+  home
 };
