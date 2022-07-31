@@ -8,8 +8,7 @@
     "dev": "node server.js"
   },
   "engines": {
-    "node": "16.16.0",
-    "npm":"8.15.0"
+    "node": "14.18.0"
   },
   "author": "",
   "license": "ISC",
