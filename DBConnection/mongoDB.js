@@ -8,7 +8,7 @@ class Mongo {
     }
 
     createMongoConnection() {
-        mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.mgnrv.mongodb.net/?retryWrites=true&w=majority`)
+        mongoose.connect(`mongodb+srv://movieDatabase:xaJwmBE6Go62IH0a@cluster0.mgnrv.mongodb.net/?retryWrites=true&w=majority`)
 
 
         mongoose.connection.once('open', () => {
