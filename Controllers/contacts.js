@@ -57,8 +57,8 @@ async function createMessages(req, res, next) {
 
 async function sendMessage(req, res, next) {
   const vonage = new Vonage({
-    apiKey: `${process.env.API_KEY}`,
-    apiSecret: `${process.env.API_SECRET}`,
+    apiKey: "c1dd1b7d",
+    apiSecret: "Zqwg29k10usy6LrA",
   });
 
   // console.log(req.body.phone)
