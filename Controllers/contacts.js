@@ -1,7 +1,7 @@
 const messageModel = require("../Models/messages");
 const contactsModel = require("../Models/contacts");
 const Vonage = require("@vonage/server-sdk");
-require('dotenv').config();
+require("dotenv").config();
 
 async function getAllContacts(req, res, next) {
   const contacts = await contactsModel.find({});
@@ -32,17 +32,17 @@ async function getAllMessages(req, res, next) {
 }
 
 async function createMessages(req, res, next) {
-  let date = new Date();
-  let year = date.getFullYear();
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  let hours = date.getHours();
-  let minutes = date.getMinutes();
-  let seconds = date.getSeconds();
-
-  let d = `${day}/${month}/${year}`;
-  let t = `${hours}:${minutes}:${seconds}`;
   try {
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    let seconds = date.getSeconds();
+
+    let d = `${day}/${month}/${year}`;
+    let t = `${hours}:${minutes}:${seconds}`;
     let message = req.body;
     message.date = d;
     message.time = t;
@@ -68,16 +68,17 @@ async function sendMessage(req, res, next) {
 
   vonage.message.sendSms(from, to, text, (err, responseData) => {
     if (err) {
-      res.send(err)
+      res.send(err);
       console.log(err);
     } else {
       if (responseData.messages[0]["status"] === "0") {
-        res.json({status:200, message:"Message sent successfully."})
+        res.json({ status: 200, message: "Message sent successfully." });
         console.log("Message sent successfully.");
       } else {
         console.log(
-          res.send(`Message failed with error: ${responseData.messages[0]["error-text"]}`)
-          `Message failed with error: ${responseData.messages[0]["error-text"]}`
+          res.send(
+            `Message failed with error: ${responseData.messages[0]["error-text"]}`
+          )`Message failed with error: ${responseData.messages[0]["error-text"]}`
         );
       }
     }
@@ -85,7 +86,7 @@ async function sendMessage(req, res, next) {
 }
 
 async function home(req, res, next) {
-  res.send("Welcome to home route.")
+  res.send("Welcome to home route.");
 }
 
 module.exports = {
@@ -94,5 +95,5 @@ module.exports = {
   getAllMessages,
   createMessages,
   sendMessage,
-  home
+  home,
 };
