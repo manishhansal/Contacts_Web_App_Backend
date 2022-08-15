@@ -13,13 +13,22 @@ async function getAllContacts(req, res, next) {
 }
 
 async function createContacts(req, res, next) {
-  try {
-    let contacts = req.body;
-    const response = await contactsModel.insertMany([contacts]);
-    res.json({ status: 200, response });
-  } catch (error) {
-    res.json({ status: 401, error });
+  let contacts = req.body;
+  const isAlready = await contactsModel.findOne({ phone: `91${contacts.phone}` });
+  console.log(isAlready);
+  if (isAlready === null) {
+    try {
+      contacts.phone = `91${contacts.phone}`
+      const response = await contactsModel.insertMany([contacts]);
+      res.json({ status: 200, response });
+    } catch (error) {
+      res.json({ status: 401, error });
+    }
   }
+  else {
+    res.json({status:409, message:"Already Exist"})
+  }
+  
 }
 
 async function getAllMessages(req, res, next) {
